@@ -13,6 +13,8 @@ services:
                 condition: service_started
         ports:
             - 80:80
+        expose:
+            - "80"
         links:
             - mongo
             - redis
@@ -105,11 +107,11 @@ services:
             # OVERLEAF_PROXY_LEARN: "true"
 
     mongo:
-        restart: always
-        image: mongo:5.0
+        image: bitnami/mongodb:5.0
         container_name: mongo
-        expose:
-            - 27017
+        restart: always
+        ports:
+            - "27017:27017"
         volumes:
             - ~/mongo_data:/data/db
         healthcheck:
@@ -117,13 +119,17 @@ services:
             interval: 10s
             timeout: 10s
             retries: 5
+        environment:
+            MONGODB_REPLICA_SET_MODE: primary
+            ALLOW_EMPTY_PASSWORD: 'yes'
+
 
     redis:
         restart: always
         image: redis:6.2
         container_name: redis
-        expose:
-            - 6379
+        ports:
+            - "6379:6379"
         volumes:
             - ~/redis_data:/data
 
