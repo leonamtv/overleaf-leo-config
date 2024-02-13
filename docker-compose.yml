@@ -106,19 +106,6 @@ services:
 
             # OVERLEAF_PROXY_LEARN: "true"
 
-    # mongo:
-    #     restart: always
-    #     image: mongo:5.0
-    #     container_name: mongo
-    #     ports:
-    #         - 27017:27017
-    #     volumes:
-    #         - ~/mongo_data:/data/db
-    #     healthcheck:
-    #         test: echo 'db.stats().ok' | mongo localhost:27017/test --quiet
-    #         interval: 10s
-    #         timeout: 10s
-    #         retries: 5
     mongo:
         image: bitnami/mongodb:5.0
         container_name: mongo
