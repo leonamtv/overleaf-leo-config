@@ -123,6 +123,7 @@ services:
             MONGODB_REPLICA_SET_MODE: primary
             ALLOW_EMPTY_PASSWORD: 'yes'
 
+
     redis:
         restart: always
         image: redis:6.2
